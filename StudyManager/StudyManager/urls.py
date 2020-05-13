@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import path, include, re_path
+from django.contrib import admin
+from django.views.generic.base import TemplateView
+from documents import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('upload/', views.upload),
+    path('documents/', views.doclist),
+    #This path is needed, to delete the file (compares primary key of file)
+    path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
+
 ]
+

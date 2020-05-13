@@ -1,0 +1,32 @@
+<h2>Documents</h2>
+<p>
+    <a href="/upload" class="btn-primary">Upload document</a>
+</p>
+<table class="table mb-0">
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Download</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for ISD_Document in Document %}
+    <tr>
+        <td>{{ ISD_Document.title}}</td>
+        <td>
+            <a href="{{ ISD_Document.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                Download PDF
+            </a>
+        </td>
+        <td>
+            <form method="post" action="{% url 'deletedoc' ISD_Document.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
