@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from registration import views as registration_views
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
-    path('registration/', registration_views.signup, name="signup"),
+    path('registration/', registration_views.signup, name='signup'),
+    path('accounts/', include('django.contrib.auth.urls')), # include the auth app at accounts/ - standard provided by django
 ]

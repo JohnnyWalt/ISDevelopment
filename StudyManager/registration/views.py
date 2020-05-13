@@ -13,7 +13,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return win32api.MessageBox(0, 'The registration was successful!', 'Congratulations!') and redirect('../registration/')
+            return win32api.MessageBox(0, 'The registration was successful!', 'Congratulations!') and redirect('../home/')
 
     else:
         form = SignUpForm()
