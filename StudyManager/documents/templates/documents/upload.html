@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block mainContent %}
 
 {% load crispy_forms_tags %}
 
@@ -15,3 +17,4 @@
 {% if url %}
     <p>Uploaded file: <a href="{{url}}">{{url}}</a></p>
 {% endif %}
+{% endblock %}
