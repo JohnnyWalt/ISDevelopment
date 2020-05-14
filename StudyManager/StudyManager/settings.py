@@ -37,11 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'documents',
     'crispy_forms',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+=======
+
+    # my own apps:
+    'registration',
+]
+>>>>>>> origin/Johannes
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +65,11 @@ ROOT_URLCONF = 'StudyManager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': ['templates'],
+=======
+        'DIRS': [os.path.join(BASE_DIR, "templates"), ],
+>>>>>>> origin/Johannes
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,8 +134,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 # Setting the path for the uploaded documents
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Setting the URL path for getting the media
 MEDIA_URL = '/media/'
+=======
+# redirects the user upon a successful login to the start page
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+>>>>>>> origin/Johannes

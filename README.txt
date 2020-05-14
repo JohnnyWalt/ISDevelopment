@@ -1,2 +1,1 @@
-This is the Project UNI.LI STUDY MANAGER!
-test
+Hallo Stefan, hat die Einrichtung geklappt?
