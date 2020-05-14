@@ -1,1 +1,1 @@
-This is the Project UNI.LI STUDY MANAGER!
+Hallo Stefan, hat die Einrichtung geklappt?

@@ -14,6 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+<<<<<<< HEAD
+from django.urls import path
+from django.urls import path, include, re_path
+from django.contrib import admin
+from django.views.generic.base import TemplateView
+from documents import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('upload/', views.upload),
+    path('documents/', views.doclist),
+    #This path is needed, to delete the file (compares primary key of file)
+    path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
+
+]
+
+=======
 from django.urls import path, include
 from django.conf.urls import url
 from registration import views as registration_views
@@ -25,3 +42,4 @@ urlpatterns = [
     path('registration/', registration_views.signup, name='signup'),
     path('accounts/', include('django.contrib.auth.urls')), # include the auth app at accounts/ - standard provided by django
 ]
+>>>>>>> origin/Johannes
