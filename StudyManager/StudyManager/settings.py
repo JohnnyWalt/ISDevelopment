@@ -137,4 +137,3 @@ MEDIA_URL = '/media/'
 # redirects the user upon a successful login to the start page
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-

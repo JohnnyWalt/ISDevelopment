@@ -24,7 +24,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('upload/', views.upload),
-    
+
     # paths to the document sites
     path('documents/', views.doclist),
     path('documents/information_systems_development/', views.ISDdocs),
@@ -46,8 +46,10 @@ urlpatterns = [
     path('documents/project_seminar/', views.PSdocs),
     path('documents/master_thesis/', views.MTdocs),
 
-        
+
     #This path is needed, to delete the file (compares primary key of file)
+
+    # This path is needed, to delete the file (compares primary key of file)
     path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
    
     # include the auth app at accounts/ - standard provided by django
