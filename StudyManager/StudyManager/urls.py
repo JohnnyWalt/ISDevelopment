@@ -26,7 +26,7 @@ urlpatterns = [
     path('upload/', views.upload),
     path('documents/', views.doclist),
    
-    #This path is needed, to delete the file (compares primary key of file)
+    # This path is needed, to delete the file (compares primary key of file)
     path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
    
     # include the auth app at accounts/ - standard provided by django
