@@ -125,7 +125,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# Setting the path for the static files like the CSS
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Setting the URL path for getting the static files
 STATIC_URL = '/static/'
+
+# for static files that aren't used in a particular app:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'StudyManager/static')
+]
 
 # Setting the path for the uploaded documents
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -140,4 +149,5 @@ LOGOUT_REDIRECT_URL = '/'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # In the real-world you would integrate with an email service like MailGun or SendGrid.
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# this is the folder where the "sent" emails will be stored as txt logfiles
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "mails_password_reset")
