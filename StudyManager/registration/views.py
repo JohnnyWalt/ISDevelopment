@@ -30,7 +30,7 @@ def password_change(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important! otherwise user has to log in again
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('/')
+            return redirect('/registration/password_change/done')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
