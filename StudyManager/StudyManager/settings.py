@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -42,6 +40,8 @@ INSTALLED_APPS = [
     'registration',
     # imported apps
     'crispy_forms',
+    'django.contrib.admin', # have to be arranged after my apps, otherwise django does not pick custom registration templates
+    'django.contrib.auth',
 
 ]
 
@@ -108,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -137,3 +136,8 @@ MEDIA_URL = '/media/'
 # redirects the user upon a successful login to the start page
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# In the real-world you would integrate with an email service like MailGun or SendGrid.
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "mails_password_reset")
