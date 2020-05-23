@@ -4,8 +4,9 @@
 
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'logout' %}">logout</a></p><br>
   <p><a href="{% url 'password_reset' %}">reset password</a></p>
+  <p><a href="{% url 'password_change' %}">change password</a></p>
 {% else %}
   <p>Hey! You are not logged in. <a href="{% url 'login' %}">Login</a> here.</p>
   <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>

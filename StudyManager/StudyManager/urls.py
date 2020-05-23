@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib import admin
+# from django.contrib.auth import views as auth.views
 from django.views.generic.base import TemplateView
 from documents import views
 from registration import views as registration_views
@@ -32,6 +32,6 @@ urlpatterns = [
     # include the auth app at accounts/ - standard provided by django
     path('registration/', registration_views.signup, name='signup'),
     path('registration/', include('django.contrib.auth.urls')),
-
-    path('registration/password_change/', registration_views.password_change, name='password_change')
+    # change password
+    path('password_change/', registration_views.password_change, name='password_change'),
 ]
