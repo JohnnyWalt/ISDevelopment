@@ -31,6 +31,6 @@ urlpatterns = [
    
     # include the auth app at accounts/ - standard provided by django
     path('registration/', registration_views.signup, name='signup'),
-    path('accounts/', include('django.contrib.auth.urls')),
-
+    path('registration/', include('django.contrib.auth.urls')),
+    
 ]
