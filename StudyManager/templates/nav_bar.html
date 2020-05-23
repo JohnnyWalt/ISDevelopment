@@ -1,9 +1,28 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
-        <li> <img src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""></li>
-        <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+        <li><a href="/"><img src="{% static 'logo/LogoStudyManager.png' %}" width="124"></a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/upload">Upload document</a></li>
         <li class="nav-item"><a class="nav-link" href="/documents">Documents</a></li>
+
+
+        <!-- dropdown menu for Account Management -->
+        <div class="dropdown">
+           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/registration/">Registration</a>
+                <a class="dropdown-item" href="/registration/password_change/">Change Password</a>
+                <a class="dropdown-item" href="/registration/password_reset/">Forgot Password?</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/">Login / Logout</a>
+            </div>
+        </div>
         <li class="nav-item"><a class="nav-link" href="/registration/">Registration</a></li>
     </ul>
 </nav>
