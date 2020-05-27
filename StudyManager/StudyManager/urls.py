@@ -24,8 +24,29 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('upload/', views.upload),
+    
+    # paths to the document sites
     path('documents/', views.doclist),
-   
+    path('documents/information_systems_development/', views.ISDdocs),
+    path('documents/enterprise_architecture_management/', views.EAMdocs),
+    path('documents/management_information_systems', views.MISdocs),
+    path('documents/business_process_management/', views.BPMdocs),
+    path('documents/data_and_application_security/', views.DASdocs),
+    path('documents/data_management/', views.DMdocs),
+    path('documents/business_statistics/', views.BSdocs),
+    path('documents/innovation_lab/', views.ILdocs),
+    path('documents/information_systems_modelling/', views.ISMdocs),
+    path('documents/digital_innovation/', views.DIdocs),
+    path('documents/data_science/', views.DSdocs),
+    path('documents/digital_business/', views.DBdocs),
+    path('documents/emerging_it_topics/', views.EITdocs),
+    path('documents/human_centered_design/', views.HCDdocs),
+    path('documents/research_methods/', views.RMdocs),
+    path('documents/research_seminar/', views.RSdocs),
+    path('documents/project_seminar/', views.PSdocs),
+    path('documents/master_thesis/', views.MTdocs),
+
+        
     #This path is needed, to delete the file (compares primary key of file)
     path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
    

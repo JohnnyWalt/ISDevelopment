@@ -6,7 +6,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    path(r'', views.upload),
+    #path(r'', views.upload),
     #path('/documents/', views.doclist),
 
     #path('documents/upload', views.upload_doc, name='Document upload'),

@@ -1,7 +1,7 @@
 from django import forms
-from .models import ISD_Document
+from .models import MIS_Document
 
 class DocForm(forms.ModelForm):
     class Meta:
-        model = ISD_Document
-        fields = {'title', 'pdf'}
+        model = MIS_Document
+        fields = {'title', 'course', 'pdf'}
