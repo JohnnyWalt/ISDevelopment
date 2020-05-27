@@ -52,9 +52,10 @@ urlpatterns = [
     # This path is needed, to delete the file (compares primary key of file)
     path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
    
-    # include the auth app at accounts/ - standard provided by django
+    # include the auth app at registration/ - standard provided by django
     path('registration/', registration_views.signup, name='signup'),
     path('registration/', include('django.contrib.auth.urls')),
     # change password
     path('password_change/', registration_views.password_change, name='password_change'),
+    path('registration/done/', TemplateView.as_view(template_name='registration/signup_done.html'), name='signup_done'),
 ]

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+  <h2>Congratulations, you successfully signed up!</h2>
+  <p>You're logged in now.</p>
+  <br>
+  <p>Return to the <a href="/">Landing Page</a> here.</p>
+  <p>You can as well <a href="{% url 'logout' %}">logout</a> here.</p>
+{% endblock %}

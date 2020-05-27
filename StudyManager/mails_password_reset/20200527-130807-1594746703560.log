@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: admin@hans.at
+Date: Wed, 27 May 2020 11:08:07 -0000
+Message-ID: <159057768777.126476.17827852907363131899@LAPTOP-LT3IPU3C.home>
+
+
+
+Hello hans!
+To initiate the password reset process for your Uni.li Study Manager Account,
+please click the link below:
+
+http://127.0.0.1:8000/registration/reset/NA/5gu-025775f7c8ec0c36b260/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+
+Johannes
+Uni.li Study Manager Team
+
+-------------------------------------------------------------------------------

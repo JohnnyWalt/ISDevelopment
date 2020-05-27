@@ -1,134 +1,44 @@
 {% extends 'base.html' %}
-
 {% block mainContent %}
 
+{% if user.is_authenticated %}
+
 <h2>Documents</h2>
-<p></p>
-<p>Here you can find an overview about all the existing documents from the courses within the Master of Information Systems program.<br></p>
-<div id="course_btn"">
-    <table style="border:10;" align="center">
-        <thead>
-            <tr style="text-align:center;">
-                <th>1. Semester</th>
-                <th>2. Semester</th>
-                <th>3. Semester</th>
-                <th>4. Semester</th>
-                <th>Electives & Cross-Faculty Electives <br> Comming soon :)</th>
-            </tr>
-        </thead>
-        <tbody style="text-align:center;">
-            <tr>
-                <td>
-                    <a href="/documents/management_information_systems" class="btn btn-primary btn-sm" style="width: 300px;">Management Information Systems</a>
-                </td>
-                <td>
-                    <a href="/documents/information_systems_modelling/" class="btn btn-primary btn-sm" style="width: 300px;">Information Systems Modelling</a>
-                </td>
-                <td>
-                    <a href="/documents/emerging_it_topics/" class="btn btn-primary btn-sm" style="width: 300px;">Emerging IT Topics</a>
-                </td>
-                <td>
-                    <a href="/documents/master_thesis/" class="btn btn-primary btn-sm" style="width: 300px;">Master Thesis</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/documents/business_process_management/" class="btn btn-primary btn-sm" style="width: 300px;">Business Process Management</a>
-                </td>
-                <td>
-                    <a href="/documents/information_systems_development/" class="btn btn-primary btn-sm" style="width: 300px;">Information System Development</a>
-                </td>
-                <td>
-                    <a href="/documents/human_centered_design/" class="btn btn-primary btn-sm" style="width: 300px;">Human Centered Design</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/documents/data_and_application_security/" class="btn btn-primary btn-sm" style="width: 300px;">Data and Application Security</a>
-                </td>
-                <td>
-                    <a href="/documents/digital_innovation/" class="btn btn-primary btn-sm" style="width: 300px;">Digital Innovation</a>
-                </td>
-                <td>
-                    <a href="/documents/research_methods/" class="btn btn-primary btn-sm" style="width: 300px;">Research Methods</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/documents/data_management/" class="btn btn-primary btn-sm" style="width: 300px;">Data Management</a>
-                </td>
-                <td>
-                    <a href="/documents/data_science/" class="btn btn-primary btn-sm" style="width: 300px;">Data Science</a>
-                </td>
-                <td>
-                    <a href="/documents/research_seminar/" class="btn btn-primary btn-sm" style="width: 300px;">Research Seminar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/documents/business_statistics/" class="btn btn-primary btn-sm" style="width: 300px;">Business Statistics</a>
-                </td>
-                <td>
-                    <a href="/documents/enterprise_architecture_management/" class="btn btn-primary btn-sm" style="width: 300px;">Enterprise Architecture Management</a>
-                </td>
-                <td>
-                    <a href="/documents/project_seminar/" class="btn btn-primary btn-sm" style="width: 300px;">Project Seminar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/documents/innovation_lab/" class="btn btn-primary btn-sm" style="width: 300px;">Innovation Lab</a>
-                </td>
-                <td>
-                    <a href="/documents/digital_business/" class="btn btn-primary btn-sm" style="width: 300px;">Digital Business</a>
-                </td>
-                <td>
-                    <a href="/documents/information_systems_modelling/" class="btn btn-primary btn-sm" style="width: 300px;">Information Systems Modelling</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <div class="text-center"><a href="/documents" class="btn btn-primary">Show all documents</a></div>
-</div>
-<br><br>
-    <table class="table mb-0">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Course</th>
-                <th>Author</th>
-                <th>Download</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for MIS_Document in Document %}
-            <tr>
-                <td><h5>{{ MIS_Document.title }}</h5></td>
-                <td>{{ MIS_Document.get_course_display }}</td>
-                <td> USER = ? </td>
-                <td>
-                    <a href="{{ MIS_Document.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
-                        Download PDF
-                    </a>
-                </td>
-                <td>
-                    <form method="post" action="{% url 'deletedoc' MIS_Document.pk %}">
-                      {% csrf_token %}
-                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </td>
+<p>
+    <a href="/upload" class="btn-primary">Upload document</a>
+</p>
+<table class="table mb-0">
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Download</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
-<br><br>
+    <tbody>
+    {% for ISD_Document in Document %}
+    <tr>
+        <td>{{ ISD_Document.title}}</td>
+        <td>
+            <a href="{{ ISD_Document.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                Download PDF
+            </a>
+        </td>
+        <td>
+            <form method="post" action="{% url 'deletedoc' ISD_Document.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-{% block mainContent2 %}
-<div id="upload" class="text-center">
-    <a href="/upload" class="btn btn-primary">Upload document</a>
-</div>
+{% else %}
+  <p>Hi! You are not logged in. To see the uploaded documents you have to <a href="{% url 'login' %}">Login</a> here.</p>
+  <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
+{% endif %}
+
 {% endblock %}
