@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block mainContent %}
-
+{% if user.is_authenticated %}
 {% load crispy_forms_tags %}
 
 <h2>Upload</h2>
@@ -16,5 +16,10 @@
 <br>
 {% if url %}
     <p>Uploaded file: <a href="{{url}}">{{url}}</a></p>
+{% endif %}
+
+{% else %}
+  <p>Hi! You are not logged in. To upload documents you have to <a href="{% url 'login' %}">Login</a> here.</p>
+  <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
 {% endif %}
 {% endblock %}

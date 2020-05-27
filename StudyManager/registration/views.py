@@ -4,10 +4,9 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
-# import win32api
-
 # Create your views here.
 def signup(request):
+    # POST requests are usually used for submissions
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -16,11 +15,13 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            # return win32api.MessageBox(0, 'The registration was successful!', 'Congratulations!') and 
-            return redirect('/')
+            # redirect to the page where the user can see that his signing up was successful
+            # in the urls.py has to be specified where to find the template that should be shown under:
+            return redirect('/registration/done')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+        # definition of the folder where the signup.html template can be found
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 def password_change(request):

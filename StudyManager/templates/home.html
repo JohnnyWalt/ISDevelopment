@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 
 {% block mainContent %}
-
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p><br>
-  <p><a href="{% url 'password_reset' %}">reset password</a></p>
-  <p><a href="{% url 'password_change' %}">change password</a></p>
+
+<h2>Hi {{ user.username }}!</h2> <br>
+  The Team of Uni Li Study Manager wishes you successful and efficient studying at the University of Liechtenstein.
+  <p><a href="{% url 'logout' %}">Logout</a></p><br>
+
+  <!-- Optional Password Management Links already on the Landing Page
+  <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+  <p><a href="{% url 'password_change' %}">Change Password</a></p> -->
+
 {% else %}
+
   <p>Hey! You are not logged in. <a href="{% url 'login' %}">Login</a> here.</p>
   <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
-  {% endif %}
 
-<h1>HOME</h1>
+{% endif %}
+
+<!-- Introduction Text / Project Explanation -->
+
+<h5><uppercase>Welcome to your Study Manager!</uppercase></h5>
+The Uni Li Study Manager is a project of two students of the University of Liechtenstein
+that provides students with the best summaries of all courses from the 1st to the 4th semester of the master-program
+<b>"Information Systems"</b>.<br>
+The best: this is all for free!<br>
+Our Slogan is <b>"From students for students - share what makes studying easier!"</b>
+<p> We (Stefan & Johannes) wish you all the best for your time at the University of Liechtenstein!</p>
+
 {% endblock %}
