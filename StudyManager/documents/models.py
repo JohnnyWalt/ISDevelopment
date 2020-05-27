@@ -25,7 +25,7 @@ class MIS_Document(models.Model):
         ('MT', 'Master Thesis'),
         
     )
-    
+    # Define upload path, depending on the selected Course from the "course Charfield"
     def location(instance, filename):
         return os.path.join(instance.course, filename)
         
@@ -33,10 +33,10 @@ class MIS_Document(models.Model):
     course = models.CharField(max_length=3, choices=courses, default='ISD')
     pdf = models.FileField(upload_to=location)
 
-
     def __str__(self):
         return self.title
-    
+
+    # Delete function, to delete the coresponding document
     def delete(self, *args, **kwargs):
         self.pdf.delete()
         super().delete(*args, **kwargs)
