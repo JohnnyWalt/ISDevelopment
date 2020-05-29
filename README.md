@@ -12,7 +12,7 @@ This setup is going to guide you through the first time setup of this project.
 
 Required dependencies are:
 
-- Python 3.6
+- Python 3.7
 
 After installing python go to the directory where you want your project to be located and clone the github repository by opening your console in the desired folder and running the following command:
 
