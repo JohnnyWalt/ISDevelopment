@@ -91,8 +91,13 @@ ISDevelopment (This folder is where our environemt, our readme and our requireme
 -> StudyManager (This folder is where our manage.py file is located)
 
 --> documents (This is where all the document handling is located)
+
 --> mails_password_reset (This is where currently the logfiles for the password resets are located)
+
 --> media (This is where all the documents get uploaded)
+
 --> registration (This is wehere all the registration/login handling is located)
+
 --> StudyManager (Main App)
+
 --> templates (This is where our main templates are located)
