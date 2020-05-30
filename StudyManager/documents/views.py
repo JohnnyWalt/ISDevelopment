@@ -13,7 +13,8 @@ def upload(request):
             form.save()
             return redirect('/documents/')
     else:
-        form = DocForm()
+        # Set Author to the request User
+        form = DocForm(initial={'author': request.user})
     return render(request, 'documents/upload.html', {
         'form': form
     })

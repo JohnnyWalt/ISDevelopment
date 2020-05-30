@@ -106,7 +106,7 @@
             <tr>
                 <td><h5>{{ MIS_Document.title }}</h5></td>
                 <td>{{ MIS_Document.get_course_display }}</td>
-                <td> USER = ? </td>
+                <td> {{ MIS_Document.author }} </td>
                 <td>
                     <a href="{{ MIS_Document.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
                         Download PDF
