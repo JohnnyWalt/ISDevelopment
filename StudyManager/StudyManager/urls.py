@@ -46,6 +46,9 @@ urlpatterns = [
     path('documents/project_seminar/', views.PSdocs),
     path('documents/master_thesis/', views.MTdocs),
 
+    # path to like
+    path('like/', views.like_document, name='like-document'),
+
 
     #This path is needed, to delete the file (compares primary key of file)
 

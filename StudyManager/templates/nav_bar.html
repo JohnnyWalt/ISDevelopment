@@ -10,7 +10,6 @@
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/upload">Upload document</a></li>
         <li class="nav-item"><a class="nav-link" href="/documents">Documents</a></li>
-        <li class="nav-item"><a class="nav-link" href="/registration/">Register</a></li>
 
 {% if user.is_authenticated %}
             <!-- Bootstrap dropdown menu for Account Management -->
@@ -20,15 +19,17 @@
            </button>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/registration/">Register</a>
                 <a class="dropdown-item" href="/password_change/">Change Password</a>
                 <a class="dropdown-item" href="/registration/password_reset/">Forgot Password?</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/">Login / Logout</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
             </div>
         </div>
-{% else %}
-
     </ul>
-{% endif %}
 </nav>
+{% else %}
+        <!-- If the user is not logged in he has the possibility to register -->
+        <li class="nav-item"><a class="nav-link" href="/registration/">Register</a></li>
+    </ul>
+</nav>
+{% endif %}

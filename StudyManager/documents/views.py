@@ -2,8 +2,29 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.core.files.storage import FileSystemStorage
 from .forms import DocForm
-from .models import MIS_Document
+from .models import MIS_Document, Like
 from django.http import HttpResponseRedirect
+
+def like_document(request):
+    user = request.user
+    if request.method == 'POST':
+        document_id = request.POST.get('document_id')
+        document_obj = MIS_Document.objects.get(id=document_id)
+
+        if user in document_obj.liked.all():
+            document_obj.liked.remove(user)
+        else:
+            document_obj.liked.add(user)
+        like, created = Like.objects.get_or_create(user=user, document_id=document_id)
+
+        if not created:
+            if Like.value =='Like':
+                Like.value = 'Unlike'
+            else:
+                Like.value = 'Like'
+
+        Like.save
+        return redirect('/documents/')
 
 # View that handles the document upload -> Only allows / saves file if POST method is used, otherwise ignore it
 def upload(request):
@@ -25,6 +46,7 @@ def deletedoc(request, pk):
         doc = MIS_Document.objects.get(pk=pk)
         doc.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
     
 # View to display the MIS_Document model -> Show all Documents
 def doclist(request):

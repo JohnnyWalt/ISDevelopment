@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block mainContent %}
 {% if user.is_authenticated %}
 
@@ -96,7 +97,7 @@
             <tr>
                 <th>Title</th>
                 <th>Course</th>
-                <th>Author</th>
+                <th>Uploaded by</th>
                 <th>Download</th>
                 <th>Delete</th>
             </tr>
@@ -118,7 +119,18 @@
                       <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
-
+                <td>
+                    <form action="{% url 'like-document' %}" method="POST" class="ui form">
+                        {% csrf_token %}
+                        <input type="hidden" name="document_id" value="{{MIS_Document.id}}">
+                        {% if user not in MIS_Document.liked.all %}
+                            <button class="btn btn-sm" type="submit"><img src="{% static 'pictures/like.jpg' %}" alt="Like-button" width=30></button>
+                        {% else %}
+                            <button class="btn btn-sm" type="submit"><img src="{% static 'pictures/unlike.jpg' %}" alt="Unlike-button" width=30></button>
+                        {% endif %}
+                    </form>
+                    <strong> {{ MIS_Document.liked.all.count }} likes</strong>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
