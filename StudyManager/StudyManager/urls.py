@@ -15,17 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from django.contrib.auth import views as auth.views
+
+from django.conf.urls.static import static
+from django.conf import settings
 from django.views.generic.base import TemplateView
 from documents import views
 from registration import views as registration_views
+
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('upload/', views.upload),
 
-    # paths to the document sites
+    # paths to the document views/pages
     path('documents/', views.doclist),
     path('documents/information_systems_development/', views.ISDdocs),
     path('documents/enterprise_architecture_management/', views.EAMdocs),
@@ -49,16 +52,16 @@ urlpatterns = [
     # path to like
     path('like/', views.like_document, name='like-document'),
 
-
-    #This path is needed, to delete the file (compares primary key of file)
-
     # This path is needed, to delete the file (compares primary key of file)
     path('documents/<int:pk>', views.deletedoc, name='deletedoc'),
-   
+
     # include the auth app at registration/ - standard provided by django
     path('registration/', registration_views.signup, name='signup'),
     path('registration/', include('django.contrib.auth.urls')),
+
     # change password
     path('password_change/', registration_views.password_change, name='password_change'),
     path('registration/done/', TemplateView.as_view(template_name='registration/signup_done.html'), name='signup_done'),
-]
+
+# add the static path for the media root to the urlpatterns, to make the documents accessable/downloadable
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

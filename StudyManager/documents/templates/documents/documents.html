@@ -1,3 +1,4 @@
+<!-- extend base, load static folder, maincontent block and don't show the content if user is not authenticated -->
 {% extends 'base.html' %}
 {% load static %}
 {% block mainContent %}
@@ -6,6 +7,7 @@
 <h2>Documents</h2>
 <p></p>
 <p>Here you can find an overview about all the existing documents from the courses within the Master of Information Systems program.<br></p>
+<!-- Create the table for the courses -->
 <div id="course_btn">
     <table style="border:10;" align="center">
         <thead>
@@ -92,6 +94,8 @@
     <div class="text-center"><a href="/documents" class="btn btn-primary">Show all documents</a></div>
 </div>
 <br><br>
+    <!-- Create the table for the documents -->
+
     <table class="table mb-0">
         <thead>
             <tr>
@@ -140,17 +144,16 @@
   <p>Hi! You are not logged in. To see the uploaded documents you have to <a href="{% url 'login' %}">Login</a> here.</p>
   <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
 {% endif %}
-
 {% endblock %}
-
 <br><br>
-
 {% block mainContent2 %}
 {% if user.is_authenticated %}
+<!-- Upload button, to add more documents -->
 <div id="upload" class="text-center">
     <a href="/upload" class="btn btn-primary">Upload document</a>
 </div>
 {% else %}
+<!-- If user is not authenticated display the following message: -->
   <p>Hi! You are not logged in. To see the uploaded documents you have to <a href="{% url 'login' %}">Login</a> here.</p>
   <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
 {% endif %}

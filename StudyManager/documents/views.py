@@ -5,26 +5,30 @@ from .forms import DocForm
 from .models import MIS_Document, Like
 from django.http import HttpResponseRedirect
 
+# View for the like function
 def like_document(request):
     user = request.user
     if request.method == 'POST':
         document_id = request.POST.get('document_id')
         document_obj = MIS_Document.objects.get(id=document_id)
-
+        # if the user already liked the document, remove the user from the liked list
         if user in document_obj.liked.all():
             document_obj.liked.remove(user)
+        # else add the user to the liked list & save the user and document id, to see which user liked which document
         else:
             document_obj.liked.add(user)
+        # get or create the like, where user & document id are saved
         like, created = Like.objects.get_or_create(user=user, document_id=document_id)
-
+        # If the value is already "like" then set value to "Unlike", else set value to "Like"
         if not created:
             if Like.value =='Like':
                 Like.value = 'Unlike'
             else:
                 Like.value = 'Like'
-
+        # save the value, doc id and user
         Like.save
-        return redirect('/documents/')
+        # redirect to current page to be able to see the updated like
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 # View that handles the document upload -> Only allows / saves file if POST method is used, otherwise ignore it
 def upload(request):
@@ -40,14 +44,13 @@ def upload(request):
         'form': form
     })
 
-# Delete document and go back to the documents overview
+# Delete document and redirect to the current page, to refresh the page
 def deletedoc(request, pk):
     if request.method == 'POST':
         doc = MIS_Document.objects.get(pk=pk)
         doc.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    
 # View to display the MIS_Document model -> Show all Documents
 def doclist(request):
     doc = MIS_Document.objects.all()

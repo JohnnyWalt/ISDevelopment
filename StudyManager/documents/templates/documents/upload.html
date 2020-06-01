@@ -1,3 +1,4 @@
+<!-- extend base, load crispy forms, maincontent block and don't show the content if user is not authenticated -->
 {% extends 'base.html' %}
 {% block mainContent %}
 {% if user.is_authenticated %}
@@ -6,19 +7,16 @@
 <h2>Upload</h2>
 <p>Documents can be uploaded here:</p>
 
+<!-- Upload form -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form | crispy }}
     <br>
     <button type="submit" class="btn btn-primary">Upload document</button>
 </form>
-
 <br>
-{% if url %}
-    <p>Uploaded file: <a href="{{url}}">{{url}}</a></p>
-{% endif %}
-
 {% else %}
+<!-- If user is not authenticated display the following message: -->
   <p>Hi! You are not logged in. To upload documents you have to <a href="{% url 'login' %}">Login</a> here.</p>
   <p>New User? <a href="{% url 'signup' %}">Register</a> here.</p>
 {% endif %}
