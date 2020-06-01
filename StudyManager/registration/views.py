@@ -29,7 +29,7 @@ def password_change(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important! otherwise user has to log in again
+            update_session_auth_hash(request, user)  # Important - otherwise user has to log in again
             messages.success(request, 'Your password was successfully updated!')
             return redirect('/registration/password_change/done')
         else:

@@ -15,13 +15,13 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # secret key in this case is read out from txt file
 # The secret key is a salt used to generate hashes
+# Many things in a Django app which require cryptographic signature - ‘SECRET_KEY’ setting is the key used for those
 
 with open('StudyManager/static/textFiles/s_key_dev.txt') as f:
     SECRET_KEY = f.read().strip()
@@ -150,8 +150,12 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # In the real-world you would integrate with an email service like MailGun or SendGrid.
+# 'filebased' writes emails to a file
+# a new file is created for each session and the files are written to defined 'EMAIL_FILE_PATH'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# this is the folder where the "sent" emails will be stored as txt logfiles
+# this is the folder where the "sent" emails will be stored as logfiles
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "mails_password_reset")
+
+# SMTP is the default configuration to set up the mail server
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
