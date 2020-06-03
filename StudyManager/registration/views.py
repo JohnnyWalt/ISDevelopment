@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render, redirect
 from registration.forms import SignUpForm
 from django.contrib import messages
@@ -9,7 +10,9 @@ def signup(request):
     # POST requests are usually used for submissions
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        # call the form’s is_valid() method
         if form.is_valid():
+            # If is_valid() is True, we’ll be able to find all the validated form data in its cleaned_data attribute
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -20,14 +23,16 @@ def signup(request):
             return redirect('/registration/done')
     else:
         form = SignUpForm()
-        # definition of the folder where the signup.html template can be found
+        # folder where the signup.html template can be found
     return render(request, 'registration/signup.html', {'form': form})
 
 
 def password_change(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
+        # call the form’s is_valid() method
         if form.is_valid():
+            # If is_valid() is True, we’ll be able to find all the validated form data in its cleaned_data attribute
             user = form.save()
             update_session_auth_hash(request, user)  # Important - otherwise user has to log in again
             messages.success(request, 'Your password was successfully updated!')

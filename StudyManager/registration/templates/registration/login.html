@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-<!-- to use crispy forms -->
+<!-- crispy forms lets you control the rendering behavior of your Django forms-->
 {% load crispy_forms_tags %}
 
 {% block mainContent %}
 
 <h2>Login</h2>
 <form method="post">
+  <!-- easy-to-use protection against Cross Site Request Forgeries -->
   {% csrf_token %}
   {{ form | crispy }}
   <button type="submit" class="btn btn-primary">Login</button>

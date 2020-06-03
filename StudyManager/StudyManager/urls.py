@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import TemplateView
@@ -59,7 +58,7 @@ urlpatterns = [
     path('registration/', registration_views.signup, name='signup'),
     path('registration/', include('django.contrib.auth.urls')),
 
-    # change password
+    # change password, register
     path('password_change/', registration_views.password_change, name='password_change'),
     path('registration/done/', TemplateView.as_view(template_name='registration/signup_done.html'), name='signup_done'),
 

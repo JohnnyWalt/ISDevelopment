@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for StudyManager project.
 
@@ -43,9 +44,11 @@ INSTALLED_APPS = [
     'documents',
     'registration',
     # imported apps
-    'crispy_forms',
-    'django.contrib.admin', # have to be arranged after my apps, otherwise django does not pick custom registration templates
-    'django.contrib.auth',
+    'crispy_forms',  # let's you control rendering behavior of your Django Forms
+    # the following have to be arranged after my apps, otherwise django does not pick custom registration templates
+    'django.contrib.admin',  # Django Admin Site https://docs.djangoproject.com/en/3.0/ref/contrib/admin/
+    'django.contrib.auth',  # API reference material for the components of Django’s authentication system.
+                            # https://docs.djangoproject.com/en/3.0/ref/contrib/auth/
 
 ]
 
@@ -150,7 +153,7 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# In the real-world you would integrate with an email service like MailGun or SendGrid.
+# In the real-world you would integrate with an email service like MailGun or SendGrid
 # 'filebased' writes emails to a file
 # a new file is created for each session and the files are written to defined 'EMAIL_FILE_PATH'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
