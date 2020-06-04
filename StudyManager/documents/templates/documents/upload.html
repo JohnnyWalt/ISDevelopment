@@ -4,6 +4,13 @@
 {% if user.is_authenticated %}
 {% load crispy_forms_tags %}
 
+<!-- Trick 77, to hide author-->
+<style>
+#div_id_author{
+    display: none;
+    }
+</style>
+
 <h2>Upload</h2>
 <p>Documents can be uploaded here:</p>
 
